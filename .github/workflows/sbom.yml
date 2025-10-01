@@ -71,4 +71,27 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: sbom-csv
-          path: sbom.csv
+          path: SBOM_${{ github.event.repository.name }}.csv
+
+      - name: Install Grype
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+
+      - name: Scan SBOM for Vulnerabilities (JSON)
+        run: |
+          grype sbom:sbom.json -o json > grype-report.json
+          
+      
+
+      - name: Convert Grype JSON to CSV
+        run: |
+          pip install --upgrade pip
+          REPO_NAME=$(basename $GITHUB_REPOSITORY)
+          python .github/scripts/grype_json_to_csv.py grype-report.json grype-report-${REPO_NAME}.csv
+
+
+      - name: Upload Vulnerability Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: grype-report
+          path: grype-report-${{ github.event.repository.name }}.csv
