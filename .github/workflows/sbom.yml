@@ -1,4 +1,4 @@
-name: SBOM Check
+name: SBOM Vulnerability Scanning
 
 on:
   workflow_dispatch:
@@ -61,8 +61,14 @@ jobs:
       - name: Create SBOM
         run: bash scripts/create-sbom.sh terraform python tflint
 
-      - name: Upload SBOM as artifact
+      - name: Convert SBOM JSON to CSV
+        run: |
+          pip install --upgrade pip
+          pip install tabulate  
+          python .github/scripts/sbom_json_to_csv.py sbom.json sbom.csv
+
+      - name: Upload SBOM CSV as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: sbom
-          path: sbom.json
+          name: sbom-csv
+          path: sbom.csv
