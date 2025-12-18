@@ -1,5 +1,6 @@
 from typing import Literal
-from pydantic import BaseSettings, AnyUrl
+from pydantic import AnyUrl
+from pydantic_settings import BaseSettings
 
 import yaml
 

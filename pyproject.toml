@@ -12,7 +12,8 @@ proxygen = 'proxygen_cli.cli.command_main:main'
 
 [tool.poetry.dependencies]
 python = "^3.13"
-pydantic = "^1.9.1"
+pydantic = "^2.12.3"
+pydantic-settings = "^2.10.1"
 click="^8.1.2"
 pyjwt = "^2.9.0"
 requests = "^2.32.3"
