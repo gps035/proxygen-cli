@@ -1,6 +1,5 @@
-from typing import Literal
-from pydantic import AnyUrl
-from pydantic_settings import BaseSettings
+from typing import Literal, Optional
+from pydantic import AnyUrl, BaseSettings
 
 import yaml
 
@@ -16,7 +15,7 @@ def _yaml_settings_file_source(_):
 class Settings(BaseSettings):
     endpoint_url: AnyUrl = "https://proxygen.prod.api.platform.nhs.uk"
     spec_output_format: Literal["json", "yaml"] = "yaml"
-    api: str = None
+    api: Optional[str] = None
 
     class Config:
         env_prefix: Literal["PROXYGEN_CREDENTIALS_"]

@@ -6,11 +6,11 @@ import sys
 import os
 
 from pydantic import (
+    BaseSettings,
     validator,
     AnyHttpUrl,
     ValidationError,
 )
-from pydantic_settings import BaseSettings 
 
 from . import dot_proxygen
 from . import constants

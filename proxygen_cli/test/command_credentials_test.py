@@ -8,8 +8,8 @@ from pydantic.error_wrappers import ValidationError
 
 import proxygen_cli.cli.command_credentials as cmd_credentials
 from proxygen_cli.lib.credentials import Credentials
-CLIENT_ID = os.environ["PROXYGEN_CLIENT_ID"]
-CLIENT_SECRET = os.environ["PROXYGEN_CLIENT_SECRET"]
+CLIENT_ID = "user-client"
+CLIENT_SECRET = "a2e0f979-742f-4557-9d03-ffe4dece9d08"
 
 def get_test_credentials(**kwargs):
     base_credentials = {
