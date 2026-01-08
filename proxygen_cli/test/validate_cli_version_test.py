@@ -13,13 +13,13 @@ def test_validate_cli_version_success(patch_request):
 
 
 def test_validate_cli_version_failure(patch_request):
-    required_version = "3.0.0"
+    required_version = "4.0.0"
 
     mocked_response = {"proxygen_cli": {"min_version": required_version}}
     with patch_request(200, mocked_response), pytest.raises(RuntimeError) as e:
         validate_cli_version()
 
-    assert (
+        assert (
             str(e.value)
-            == "This version proxygen-cli is out-of-date. Please update to 3.0.0"
+            == "This version proxygen-cli is out-of-date. Please update to 4.0.0"
         )
