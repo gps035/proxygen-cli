@@ -19,7 +19,7 @@ def test_validate_cli_version_failure(patch_request):
     with patch_request(200, mocked_response), pytest.raises(RuntimeError) as e:
         validate_cli_version()
 
-        assert (
+    assert (
             str(e.value)
             == "This version proxygen-cli is out-of-date. Please update to 3.0.0"
         )
